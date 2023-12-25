@@ -5,7 +5,7 @@ import java.util.Vector;
 
 public class Classroom implements Serializable{
 	
-	private static final long serialVersionUID = 1L;	public int cabinetNumber;
+	public int cabinetNumber;
 	
 	public ClassRoomType classRoomType;
 	

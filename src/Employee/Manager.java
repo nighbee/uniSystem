@@ -6,9 +6,7 @@ import enums.*;
 import Database.*; 
 import Student.*; 
 
-; public class Manager extends Employee implements Serializable{
-
-	private static final long serialVersionUID = 1L;
+public class Manager extends Employee implements Serializable{
 	ManagerTypes typeOfManager;
 
 	public Manager() {

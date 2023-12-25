@@ -7,7 +7,7 @@ import Database.*;
 import user.*; 
 import Employee.*; 
 
-public class Student extends User implements CanDoResearch, CanDoDiploma ,Serializable{
+public class Student extends User implements Serializable{
 	
 	
 	private static final long serialVersionUID = 1L;
@@ -16,16 +16,16 @@ public class Student extends User implements CanDoResearch, CanDoDiploma ,Serial
 	private Organizations organizationOfStudent;
 	private Faculties faculty;
 	private StudentDegree degree;
-	private int yearOfStudy;
+	private int year;
 
 	public Student() {
 	};
 
-	public Student(String userId, String userName, String email, String address, String password, Faculties faculted,
-			int yearOfStudy, StudentDegree studentDegree) {
+	public Student(String userId, String userName, String email, String address, String password, Faculties faculty,
+			int year, StudentDegree studentDegree) {
 		super();
-		this.faculty = faculted;
-		this.yearOfStudy = yearOfStudy;
+		this.faculty = faculty;
+		this.year = year;
 		this.degree = studentDegree;
 	}
 	
@@ -66,11 +66,11 @@ public class Student extends User implements CanDoResearch, CanDoDiploma ,Serial
 	}
 
 	public int getYearOfStudy() {
-		return yearOfStudy;
+		return year;
 	}
 
 	public void setYearOfStudy(Integer yearOfStudy) {
-		this.yearOfStudy = yearOfStudy;
+		this.year = yearOfStudy;
 	}
 
 	public StudentDegree getDegree() {
@@ -126,23 +126,23 @@ public class Student extends User implements CanDoResearch, CanDoDiploma ,Serial
 		return this.studentCourses;
 	}
 
-	public boolean registrateCourse(String nameCourse, DataBase db) {
-		for (Course i : db.courses) {
-			if (i.getTitle().equals(nameCourse) && i.getYearOfStudentCanGet() == this.yearOfStudy) {
-				studentCourses.add(i);
-				return true;
-			}
-		}
-		return false;
-	}
+//	public boolean registrateCourse(String nameCourse, DataBase db) {
+//		for (Course i : db.courses) {
+//			if (i.getTitle().equals(nameCourse) && i.getYearOfStudentCanGet() == this.yearOfStudy) {
+//				studentCourses.add(i);
+//				return true;
+//			}
+//		}
+//		return false;
+//	}
 
-	public void viewStudentCourse(DataBase db) {
-		for (int i = 0; i < studentCourses.size(); ++i) {
-			System.err.print(studentCourses.get(i) + " <- " + db.preRequisite.get(studentCourses.get(i)));
-			System.out.println();
-		}
-
-	}
+//	public void viewStudentCourse(DataBase db) {
+//		for (int i = 0; i < studentCourses.size(); ++i) {
+//			System.err.print(studentCourses.get(i) + " <- " + db.preRequisite.get(studentCourses.get(i)));
+//			System.out.println();
+//		}
+//
+//	}
 
 	public Teacher viewTeacher() {
 		return null;
@@ -153,15 +153,15 @@ public class Student extends User implements CanDoResearch, CanDoDiploma ,Serial
 			System.err.println(entry);
 		}
 	}
-
-	public void rateTeacher(DataBase db) {
-		for (User u : db.users) {
-			if (u.getClass() == Teacher.class) {
-				System.out.println(u.getUserName());
-
-			}
-		}
-	}
+//
+//	public void rateTeacher(DataBase db) {
+//		for (User u : db.users) {
+//			if (u.getClass() == Teacher.class) {
+//				System.out.println(u.getUserName());
+//
+//			}
+//		}
+//	}
 
 	public HashMap<Course, Marks> getMark(Course course) {
 		HashMap<Course, Marks> markTemp = new HashMap<Course, Marks>();
@@ -185,18 +185,18 @@ public class Student extends User implements CanDoResearch, CanDoDiploma ,Serial
 		totalGPA = sum / sumCredits;
 		return totalGPA;
 	}
-
-	public void viewTranscript() {
-		System.out.println("---------------------");
-		for (Entry<Course, Marks> entry : attestations.entrySet()) {
-			System.out.println(entry.getKey().getTitle() + '|' + entry.getKey().getCredits() + '|'
-					+ entry.getValue().getAllPoints(this, entry.getKey()) + '|' + entry.getValue().getLiteralMark()
-					+ '|' + this.calculateGpa(attestations, entry.getKey()));
-		}
-		System.out.println("---------------------");
-		System.out.println("Total GPA = " + calculateGpaTotal());
-
-	}
+//
+//	public void viewTranscript() {
+//		System.out.println("---------------------");
+//		for (Entry<Course, Marks> entry : attestations.entrySet()) {
+//			System.out.println(entry.getKey().getTitle() + '|' + entry.getKey().getCredits() + '|'
+//					+ entry.getValue().getAllPoints(this, entry.getKey()) + '|' + entry.getValue().getLiteralMark()
+//					+ '|' + this.calculateGpa(attestations, entry.getKey()));
+//		}
+//		System.out.println("---------------------");
+//		System.out.println("Total GPA = " + calculateGpaTotal());
+//
+//	}
 
 	public void viewRequests() {
 		for (RequestsForStudent requests : studentsRequests) {
@@ -231,29 +231,29 @@ public class Student extends User implements CanDoResearch, CanDoDiploma ,Serial
 			return 1;
 		}
 	}
-    public void markAttendance(DataBase db,String lessonName) {
-    	for(Entry<Lesson, Boolean> entry : db.openedAttendances.entrySet()) {
-    		System.out.println(entry.getKey().getCourse().getTitle() + "Status: " + entry.getValue());
-    	}
-    
-    	for(Entry<Lesson, Boolean> entry : db.openedAttendances.entrySet()) {
-    		if(entry.getKey().getCourse().getTitle().equals(lessonName) && entry.getValue().toString().equals("false")) {
-    			db.openedAttendances.replace(entry.getKey(), true);
-    		}
-    	}
-    	
-    }
+//    public void markAttendance(DataBase db,String lessonName) {
+//    	for(Entry<Lesson, Boolean> entry : db.openedAttendances.entrySet()) {
+//    		System.out.println(entry.getKey().getCourse().getTitle() + "Status: " + entry.getValue());
+//    	}
+//    
+//    	for(Entry<Lesson, Boolean> entry : db.openedAttendances.entrySet()) {
+//    		if(entry.getKey().getCourse().getTitle().equals(lessonName) && entry.getValue().toString().equals("false")) {
+//    			db.openedAttendances.replace(entry.getKey(), true);
+//    		}
+//    	}
+//    	
+//    }
 
 	public String toString() {
 		return super.toString() + " Student info: [gpa=" + this.calculateGpaTotal() + ", faculty=" + faculty
-				+ ", yearOfStudy=" + yearOfStudy + " Organization: " + organizationOfStudent + "]";
+				+ ", yearOfStudy=" + year + " Organization: " + organizationOfStudent + "]";
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = super.hashCode();
-		result = prime * result + Objects.hash(degree, faculty, organizationOfStudent, yearOfStudy);
+		result = prime * result + Objects.hash(degree, faculty, organizationOfStudent, year);
 		return result;
 	}
 
@@ -267,7 +267,7 @@ public class Student extends User implements CanDoResearch, CanDoDiploma ,Serial
 			return false;
 		Student other = (Student) obj;
 		return degree == other.degree && faculty == other.faculty
-				&& organizationOfStudent == other.organizationOfStudent && yearOfStudy == other.yearOfStudy;
+				&& organizationOfStudent == other.organizationOfStudent && year == other.year;
 	}
 
 	public void doResearch(String ResearshName) {
@@ -278,11 +278,5 @@ public class Student extends User implements CanDoResearch, CanDoDiploma ,Serial
 		}
 	}
 
-	public void doDiploma() {
-		if (yearOfStudy > 3) {
-			System.err.println("You con do Diploma projects");
-		} else {
-			System.err.println("You con NOT do Diploma projects");
-		}
-	}
+	
 }

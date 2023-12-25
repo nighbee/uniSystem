@@ -18,7 +18,7 @@ public class DataBase implements Serializable {
 	Course c2 = new Course("DiscreteMath", 5, "DM789", "21T4FITL656",1);
 	Course c3 = new Course("IKT", 4, "IK789", "21T9ISEL478",2);
 	public HashMap<Course,Course> preRequisite = new HashMap<Course,Course>();
-
+	public Vector<Order> order = new Vector<Order>(); 
 	Course c4 = new Course("PP1",43,"PP123","21T4FITL656",1);
     {
     	preRequisite.put(c1, c4);
@@ -27,9 +27,11 @@ public class DataBase implements Serializable {
     	courses.add(c2);
     	courses.add(c3);
     }
-	DataBase(){
-			
+	DataBase(){		
 	}
+	public Vector<News> News= new Vector<News>(); 
+	Database.News n1= new News("Shit", " Shit", " 11.22.33");
+	
 	
 	public HashMap <Student,Integer> failOfStudents = new HashMap<Student,Integer>();
 	public HashMap<Lesson,Boolean> openedAttendances = new HashMap<Lesson,Boolean>();

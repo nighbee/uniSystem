@@ -3,7 +3,7 @@ import user.*;
 import Database.*; 
 import java.io.Serializable;
 
-public class Admin extends User implements Serializable{
+public class Admin extends Manager implements Serializable{
 	
 	
 	
@@ -44,8 +44,6 @@ public class Admin extends User implements Serializable{
         return super.toString();
     }
    
-    
-
 	public int getSalary() {
 		return salary;
 	}
@@ -53,6 +51,4 @@ public class Admin extends User implements Serializable{
 	public void setSalary(int salary) {
 		this.salary = salary;
 	}
-    
-    
 }

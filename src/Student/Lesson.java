@@ -1,12 +1,9 @@
-package Student;
+ package Student;
 import java.io.Serializable;
 import java.util.Objects;
 import enums.*; 
 
-public class Lesson implements Serializable{
-	
-	private static final long serialVersionUID = 1L;
-
+public class Lesson {
 	private Classroom classroom;
 	
 	private Course course;
@@ -73,10 +70,4 @@ public class Lesson implements Serializable{
 		return Objects.equals(classroom, other.classroom) && Objects.equals(course, other.course) && day == other.day
 				&& format == other.format && Objects.equals(time, other.time) && type == other.type;
 	}
-    
-    
-    
-    
-    
-    
 }

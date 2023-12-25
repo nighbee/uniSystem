@@ -5,8 +5,9 @@ import java.util.Vector;
 import Database.*; 
 import enums.*; 
 import Student.* ; 
+import java.util.*;
 public class Teacher extends Employee implements CanDoResearch ,Serializable{
-
+	public Vector<Complaint> complaints; 
 	private static final long serialVersionUID = 1L;
 
 	public Teacher() {
@@ -20,7 +21,7 @@ public class Teacher extends Employee implements CanDoResearch ,Serializable{
 		super(userId, userName, email, address, password, salary);
 		this.degree = degree;
 	}
-
+	
 	public Vector<Lesson> teacherSchedule = new Vector<Lesson>();
 	public Vector<Course> teacherCourses = new Vector<Course>();
 	public Vector<RequestsForTeacher> teacherRequests = new Vector<RequestsForTeacher>();

@@ -8,14 +8,33 @@ public abstract class Employee extends User implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
 	public Vector<Message> mailBox = new Vector<Message>();
-    
+    public String orderID; 
 	public Employee() {
 		super();
 	}
-    public Employee(String userId, String userName, String email, String address, String password, int salary) {
+    
+
+	public Employee(Vector<Message> mailBox, String orderID, int salary) {
 		super();
+		this.mailBox = mailBox;
+		this.orderID = orderID;
 		this.salary = salary;
 	}
+	
+//	public String OrderText() {}
+	
+	public void createOrder(String orderID) { 
+		
+	}
+	public String getOrderID() {
+		return orderID;
+	}
+
+
+	public void setOrderID(String orderID) {
+		this.orderID = orderID;
+	}
+
 
 	private int salary;
     
@@ -63,8 +82,5 @@ public abstract class Employee extends User implements Serializable{
 	public String toString() {
 		return super.toString() + "Employee [salary=" + salary + "]";
 	}
-   
-    
-    
     
 }

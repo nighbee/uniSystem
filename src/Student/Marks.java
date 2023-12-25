@@ -5,8 +5,6 @@ import java.io.*;
 
 public class Marks implements Serializable {
     
-	private static final long serialVersionUID = 1L;
-
 	private int markTotal;
     
     private int points;
@@ -60,7 +58,6 @@ public class Marks implements Serializable {
 		  else if(a>=55 && a<=59){String t="D+";return t;}
 		  else if(a>=50 && a<=54){String t="D";return t;}
 		  else {String t="F";return t;}
-	   
     }
     
     public void setLiteralMark(String literalMark) {
